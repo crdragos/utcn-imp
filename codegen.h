@@ -125,6 +125,7 @@ private:
   void LowerRefExpr(const Scope &scope, const RefExpr &expr);
   /// Lowers a binary expression.
   void LowerBinaryExpr(const Scope &scope, const BinaryExpr &expr);
+  void LowerIntegerExpr(const Scope &scope, const IntExpr &integer);
   /// Lowers a call expression.
   void LowerCallExpr(const Scope &scope, const CallExpr &expr);
 

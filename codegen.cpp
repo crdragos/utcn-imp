@@ -177,6 +177,9 @@ void Codegen::LowerExpr(const Scope &scope, const Expr &expr)
     case Expr::Kind::CALL: {
       return LowerCallExpr(scope, static_cast<const CallExpr &>(expr));
     }
+    case Expr::Kind::INT: {
+      return LowerIntegerExpr(scope, static_cast<const IntExpr &>(expr));
+    }
   }
 }
 
@@ -210,6 +213,12 @@ void Codegen::LowerBinaryExpr(const Scope &scope, const BinaryExpr &binary)
       return EmitAdd();
     }
   }
+}
+
+void Codegen::LowerIntegerExpr(const Scope &scope, const IntExpr &integer) {
+  Emit<Opcode>(Opcode::PUSH_INT);
+  depth_ += 1;
+  Emit<uint64_t>(integer.GetValue());
 }
 
 // -----------------------------------------------------------------------------
