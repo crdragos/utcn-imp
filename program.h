@@ -22,6 +22,16 @@ enum class Opcode : uint8_t {
   CALL,
 
   ADD,
+  MINUS,
+  MUL,
+  DIV,
+  REM,
+  EQUALEQUAL,
+  G,
+  GE,
+  L,
+  LE,
+  NE,
   RET,
 
   JUMP_FALSE,

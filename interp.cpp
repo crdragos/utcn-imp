@@ -58,6 +58,92 @@ void Interp::Run()
         Push(lhs + rhs);
         continue;
       }
+      case Opcode::MINUS: {
+        auto rhs = PopInt();
+        auto lhs = PopInt();
+        Push(lhs - rhs);
+        continue;
+      }
+      // add case for MUL, DIV, REM
+      case Opcode::MUL: {
+        auto rhs = PopInt();
+        auto lhs = PopInt();
+        Push(lhs * rhs);
+        continue;
+      }
+      case Opcode::DIV: {
+        auto rhs = PopInt();
+        auto lhs = PopInt();
+        Push(lhs / rhs);
+        continue;
+      }
+      case Opcode::REM: {
+        auto rhs = PopInt();
+        auto lhs = PopInt();
+        Push(lhs % rhs);
+        continue;
+      }
+      // add case for comp operations
+      case Opcode::EQUALEQUAL: {
+        auto rhs = PopInt();
+        auto lhs = PopInt();
+        std::int64_t result = 0;
+        if (lhs == rhs) {
+          result = 1;
+        }
+        Push(result);
+        continue;
+      }
+      case Opcode::G: {
+        auto rhs = PopInt();
+        auto lhs = PopInt();
+        std::int64_t result = 0;
+        if (lhs > rhs) {
+          result = 1;
+        }
+        Push(result);
+        continue;
+      }
+      case Opcode::GE: {
+        auto rhs = PopInt();
+        auto lhs = PopInt();
+        std::int64_t result = 0;
+        if (lhs >= rhs) {
+          result = 1;
+        }
+        Push(result);
+        continue;
+      }
+      case Opcode::L: {
+        auto rhs = PopInt();
+        auto lhs = PopInt();
+        std::int64_t result = 0;
+        if (lhs < rhs) {
+          result = 1;
+        }
+        Push(result);
+        continue;
+      }
+      case Opcode::LE: {
+        auto rhs = PopInt();
+        auto lhs = PopInt();
+        std::int64_t result = 0;
+        if (lhs <= rhs) {
+          result = 1;
+        }
+        Push(result);
+        continue;
+      }
+      case Opcode::NE: {
+        auto rhs = PopInt();
+        auto lhs = PopInt();
+        std::int64_t result = 0;
+        if (lhs != rhs) {
+          result = 1;
+        }
+        Push(result);
+        continue;
+      }
       case Opcode::RET: {
         auto depth = prog_.Read<unsigned>(pc_);
         auto nargs = prog_.Read<unsigned>(pc_);
